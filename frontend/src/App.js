@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Switch, Link } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react"
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
@@ -24,9 +24,7 @@ function App() {
         </div>
       </Router>
     </ChakraProvider>
-
-
-
+// 08034931554 daddy ore
   );
 }
 

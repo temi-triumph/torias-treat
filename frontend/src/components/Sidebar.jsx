@@ -43,8 +43,6 @@ function Sidebar() {
                             changeNavSize("small")
                     }}
                 />
-
-
                 <NavItem navSize={navSize} icon={FiHome} title="Home" dest="/home"/>
                 <NavItem navSize={navSize} icon={FiActivity} title="Dashboard" dest="/dashboard"/>
                 <NavItem navSize={navSize} icon={FiSettings} title="Account" dest="/account"/>
