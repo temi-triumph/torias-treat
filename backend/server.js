@@ -1,5 +1,6 @@
 
 
+const mongoose = require("mongoose");
 const express = require('express');
 const cors = require('cors')
 const env = require('dotenv').config();
@@ -7,6 +8,12 @@ const env = require('dotenv').config();
 const port  = process.env.PORT || 5000
 
 const app = express();
+
+/// initailizing mongodb connection
+mongoose.connect(process.env.DB_CONN_STRING)
+.then( () => {
+  console.log("mongodb connected");
+})
 
 const whitelist = ["http://localhost:3000"]
 const corsOptions = {
