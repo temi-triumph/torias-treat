@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Stack, Button, FormControl, FormLabel,
     FormErrorMessage,
@@ -6,9 +6,36 @@ import {
 } from "@chakra-ui/react"
 import { useFormik } from 'formik';
 
+
+import {useSelector, useDispatch} from 'react-redux'
+import {useNavigate } from "react-router-dom" 
+import {login, reset} from "../../features/auth/authSlice"
+
 function SigninForm() {
 
     //  const [name, setName] = useState("");
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {user, isLoading, isError, isSuccess, message} = useSelector(
+    (state) => state.auth
+    )
+
+    useEffect(() => {
+        if(isError){
+            console.log("front end error response")
+            console.log(message);
+        }
+        if(isSuccess){
+            console.log("front end success response")
+            console.log(message);
+        }
+        dispatch(reset());
+
+    }, [user, isError, isSuccess, message, navigate, dispatch])
+
+
+
     const [showPassword, setShowPassword] = useState(false);
 
     const validate = values => {
@@ -21,9 +48,10 @@ function SigninForm() {
 
         if (!values.password) {
             errors.password = 'Password is Required';
-        } else if (values.password.length < 7) {
-            errors.password = 'Password must be at least 7 characters';
-        }
+        } 
+        // else if (values.password.length < 7) {
+        //     errors.password = 'Password must be at least 7 characters';
+        // }
         return errors;
     };
 
@@ -37,9 +65,7 @@ function SigninForm() {
         onSubmit: values => {
             console.log(values)
             console.log("vvv")
-
-            /// call the function that will talk to the backend here
-            ///probably dispatch an action in redux or something
+            dispatch(login(values));
         },
     })
     return (

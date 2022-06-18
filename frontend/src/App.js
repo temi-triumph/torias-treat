@@ -9,7 +9,6 @@ import Login from './pages/Auth/Login'
 
 function App() {
   return (
-
     <ChakraProvider>
       <Router>
         <div className="App">
